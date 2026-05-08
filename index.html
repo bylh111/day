@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>母亲节献礼</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            /* 多层高级渐变背景 层次感极强 */
+            background: linear-gradient(-45deg, #e8d5e2, #d4e4ed, #f3e8ee, #e2e9f4);
+            background-size: 400% 400%;
+            animation: bgMove 12s ease infinite;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 背景缓慢流动动画 */
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .content-box {
+            width: 720px;
+            height: 460px;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 8px 32px rgba(160, 140, 180, 0.25);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 全部文字统一高级暗柔色系 干净耐看 */
+        h1 {
+            font-size: 50px;
+            color: #5c4b66;
+            letter-spacing: 6px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 8px rgba(92,75,102,0.2);
+        }
+        p {
+            font-size: 24px;
+            color: #6d5c7a;
+            margin: 10px 0;
+            letter-spacing: 2px;
+        }
+        .end-text {
+            margin-top: 40px;
+            font-size: 22px;
+            color: #7c6b8a;
+        }
+        .fall-item {
+            position: absolute;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-box">
+        <h1>以爱之名 致敬母亲</h1>
+        <p>世间温柔 皆归于您</p>
+        <p>承蒙养育 岁岁感恩</p>
+        <div class="end-text">母亲节安康 万事从容</div>
+    </div>
+
+<script>
+// 淡雅彩色落叶
+function createLeaf(){
+    let leaf = document.createElement('div');
+    leaf.className = 'fall-item';
+    let size = Math.random() * 20 + 7;
+    // 低饱和高级色系 不刺眼
+    let colorList = ['#b8a8c8','#a8bcd0','#c9b8d2','#b4c8d8','#d0c2d9'];
+    let color = colorList[Math.floor(Math.random()*colorList.length)];
+    leaf.style.cssText = `
+        width:${size}px;
+        height:${size}px;
+        background:${color};
+        border-radius:40% 60%;
+        left:${Math.random()*100}%;
+        top:-25px;
+        opacity:${Math.random()*0.4+0.4};
+        animation:leafFall ${Math.random()*8+5}s ease-in-out infinite;
+    `
+    document.body.appendChild(leaf);
+}
+
+// 柔和爱心飘落
+function createHeart(){
+    let heart = document.createElement('div');
+    heart.className = 'fall-item';
+    let heartColor = ['#b9a7c2','#9fb4c8','#c7b6d1'];
+    let hc = heartColor[Math.floor(Math.random()*heartColor.length)];
+    heart.style.cssText = `
+        width:15px;height:13px;
+        background:${hc};
+        transform:rotate(-45deg);
+        left:${Math.random()*100}%;
+        top:-25px;
+        animation:heartDown ${Math.random()*7+4}s linear infinite;
+    `
+    document.body.appendChild(heart);
+}
+
+setInterval(createLeaf,130);
+setInterval(createHeart,220);
+
+let style = document.createElement('style');
+style.innerHTML = `
+@keyframes leafFall{
+    0%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(50vh) rotate(180deg) translateX(25px);}
+    100%{transform:translateY(100vh) rotate(360deg) translateX(-25px);}
+}
+@keyframes heartDown{
+    0%{opacity:0.9;}
+    100%{opacity:0;transform:translateY(100vh);}
+}`
+document.head.appendChild(style);
+</script>
+</body>
+</html>
